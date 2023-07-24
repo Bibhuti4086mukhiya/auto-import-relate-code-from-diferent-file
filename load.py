@@ -180,19 +180,32 @@
 
 # print(r)
 
+# import ast
+
+# with open("inpu.py", "r") as f:
+#     code = f.read() #
+
+# def find_assign_nodes(source_code):
+#     tree = ast.parse(source_code)
+#     assign_nodes = [node for node in ast.walk(tree) if isinstance(node, ast.Assign)]
+#     return assign_nodes
+
+# assign_nodes = find_assign_nodes(code)
+
+# for assign_node in assign_nodes:
+#     targets = [target.id for target in assign_node.targets if isinstance(target, ast.Name)]
+#     value = ast.unparse(assign_node.value).strip()
+#     print(f"{value}")
+
 import ast
 
-with open("inpu.py", "r") as f:
-    code = f.read() #
 
-def find_assign_nodes(source_code):
-    tree = ast.parse(source_code)
-    assign_nodes = [node for node in ast.walk(tree) if isinstance(node, ast.Assign)]
-    return assign_nodes
 
-assign_nodes = find_assign_nodes(code)
+import ast
 
-for assign_node in assign_nodes:
-    targets = [target.id for target in assign_node.targets if isinstance(target, ast.Name)]
-    value = ast.unparse(assign_node.value).strip()
-    print(f"{value}")
+source = open("new_file.py", "r").read()
+functions = [f.name for f in ast.parse(source).body
+             if isinstance(f, ast.FunctionDef)]
+
+print(functions)
+

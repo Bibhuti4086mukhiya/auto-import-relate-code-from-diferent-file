@@ -15,6 +15,7 @@ class WildcardImportChecker(ast.NodeVisitor):
 tree = ast.parse(code)
 visitor = WildcardImportChecker()
 visitor.visit(tree)
+
 file_def={}
 i=0
 class PrintToCallFunctionTransformer(ast.NodeTransformer):
@@ -52,6 +53,7 @@ def exclude_imports_functions(code_str):
 
 def newFile(func_name):
     # sub_def=set()
+    x_list=[]
     for i in func_name:
         module = __import__(str(file_module[i]))#file name 
         source_code = inspect.getsource(getattr(module,i))#def func name
@@ -64,20 +66,20 @@ def newFile(func_name):
             if len(targets)==0:
                 for j in value:
                     if j=='(':
+                        x_list+=[x]
                         break
                     else:
-                        x+=j 
-                source_code = inspect.getsource(getattr(module,x))#def func name
-                file.write(source_code)
+                        x+=j
 
+    print(x_list)
+    if len(x_list)!=0:
+        source = (open("new_file.py", "r").read())
+        print(source)
+        functions = [f.name for f in ast.parse(source).body
+             if isinstance(f, ast.FunctionDef)]
+        print(functions)
         
-            
-    # for i in list(set(sub_def)):
-    #     module = __import__(str(file_module[i]))#file name 
-    #     source_code = inspect.getsource(getattr(module,i))#def func name
-
-
-    # file.write(source_code)
+    file.write(source_code)
 
 newFile(func_name) 
 
