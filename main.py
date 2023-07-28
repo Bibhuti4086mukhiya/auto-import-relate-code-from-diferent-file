@@ -58,7 +58,6 @@ def newFile(func_name):
     x_list=set()
     for i in func_name:
         module = __import__(str(file_module[i]))#file name 
-        module_name=file_module[i]
         source_code = inspect.getsource(getattr(module,i))#def func name
         file=fileOpen()
         file.write(source_code)
@@ -84,7 +83,6 @@ def newFile(func_name):
 
     remain_def=x_list.difference(set(functions))
     for j in remain_def:
-        module = __import__(module_name)#file name 
         source_code = inspect.getsource(getattr(module,j))#def func name
         file=fileOpen()
         file.write(source_code)
