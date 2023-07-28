@@ -32,7 +32,7 @@ new_tree = transformer.visit(tree)
 
 func_name=list(file_def.values())
 
-def fileOne():
+def fileOpen():
     try:
         file=open('output.py','a')
         return file 
@@ -60,7 +60,7 @@ def newFile(func_name):
         module = __import__(str(file_module[i]))#file name 
         module_name=file_module[i]
         source_code = inspect.getsource(getattr(module,i))#def func name
-        file=fileOne()
+        file=fileOpen()
         file.write(source_code)
         file.close()
 
@@ -86,13 +86,13 @@ def newFile(func_name):
     for j in remain_def:
         module = __import__(module_name)#file name 
         source_code = inspect.getsource(getattr(module,j))#def func name
-        file=fileOne()
+        file=fileOpen()
         file.write(source_code)
         file.close()
 
 newFile(func_name) 
 
 filtered_code = exclude_imports_functions(code)
-file=fileOne()
+file=fileOpen()
 file.write(filtered_code)
 file.close()
