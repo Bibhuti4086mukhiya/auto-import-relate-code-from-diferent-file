@@ -197,15 +197,42 @@
 #     value = ast.unparse(assign_node.value).strip()
 #     print(f"{value}")
 
-import ast
 
 
 
-import ast
+# import ast
 
-source = open("new_file.py", "r").read()
-functions = [f.name for f in ast.parse(source).body
-             if isinstance(f, ast.FunctionDef)]
+# source = open("new_file.py", "r").read()
+# functions = [f.name for f in ast.parse(source).body
+#              if isinstance(f, ast.FunctionDef)]
 
-print(functions)
+# print(functions)
 
+
+import os
+
+# # Specify the path to the outer folder
+# outer_folder_path = "C:/Users/Dell/Desktop/storage/timeline/2023/july/"
+# # Specify the path to the folder inside the outer folder
+
+# inner_folder_path = os.path.join(outer_folder_path, "auto access relate code")
+
+# # Access files inside the inner folder
+# for file_name in os.listdir(inner_folder_path):
+#     file_path = os.path.join(inner_folder_path, file_name)
+#     if os.path.isfile(file_path):
+#         # Do something with the file, e.g., read its contents
+#         with open(file_path, "r") as file:
+#             file_contents = file.read()
+#             print(file_contents)
+
+import os
+
+# Specify the path to the folder you want to read
+folder_path = "C:/Users/Dell/Desktop/storage/timeline/2023/july/auto access relate code"
+
+# List all the files and subdirectories in the folder
+contents = os.listdir(folder_path)
+
+# Print the contents of the folder
+print(contents)

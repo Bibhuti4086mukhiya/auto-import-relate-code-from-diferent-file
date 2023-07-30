@@ -1,9 +1,8 @@
 import ast
 import inspect
-
 with open("input.py", "r") as f:
     code = f.read() #
-    
+
 file_module={}
 class WildcardImportChecker(ast.NodeVisitor):
     global file_module
@@ -67,6 +66,7 @@ def newFile(func_name):
         for assign_node in assign_nodes:
             targets = [target.id for target in assign_node.targets if isinstance(target, ast.Name)]
             value = ast.unparse(assign_node.value).strip()
+
             x=''
             if len(targets)==0:
                 for j in value:
@@ -75,7 +75,7 @@ def newFile(func_name):
                         break
                     else:
                         x+=j
-
+    print(x_list)
     if len(x_list)!=0:
         source = (open("output.py", "r").read())
         functions = [f.name for f in ast.parse(source).body
@@ -94,3 +94,4 @@ filtered_code = exclude_imports_functions(code)
 file=fileOpen()
 file.write(filtered_code)
 file.close()
+
