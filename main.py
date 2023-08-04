@@ -27,7 +27,7 @@ class PrintToCallFunctionTransformer(ast.NodeTransformer):
         self.generic_visit(node)
 
 transformer = PrintToCallFunctionTransformer()
-new_tree = transformer.visit(tree)
+transformer.visit(tree)
 
 func_name=list(file_def.values())
 
@@ -75,7 +75,7 @@ def newFile(func_name):
                         break
                     else:
                         x+=j
-    print(x_list)
+    # print(x_list)
     if len(x_list)!=0:
         source = (open("output.py", "r").read())
         functions = [f.name for f in ast.parse(source).body
